@@ -9,7 +9,7 @@ import SearchBar from "./components/SearchBar/SearchBar";
 import ImageList from "./components/imageList/imageList";
 import Spinner from "./components/Spinner/spinner";
 import MessageBlock from "./components/MessageBlock/MessageBlock";
-// import Pagination from "./components/Pagination/Pagination";
+import Pagination from "./components/Pagination/Pagination";
 import HeroBox from "./components/heroBox/heroBox";
 import Aux from "./hoc/Aux";
 
@@ -20,18 +20,17 @@ class App extends React.Component {
         noImg: false,
         totalPhotos: 0,
         currentPage: 1,
-        perPage: 20,
+        perPage: 11,
         popularImages: true,
-        authAvatar: '',
-        authName: ''
+        query: null
     }
 
-    onSearchSubmit = (term) => {
+    onSearchSubmit = (term, page) => {
         unsplash.get(`/search/photos`, {
                 params: {
                     query: term,
                     per_page: this.state.perPage,
-                    page: term,
+                    page,
                 },
             },
             this.setState({
@@ -44,10 +43,9 @@ class App extends React.Component {
                     loading: false,
                     noImg: false,
                     totalPhotos: parseInt(response.headers['x-total']),
-                    currentPage: term,
+                    currentPage: page,
                     popularImages: false,
-                    authAvatar: response.data.user,
-                    authName: '',
+                    query: term
                 });
 
                 if (response.data.total === 0) {
@@ -55,6 +53,9 @@ class App extends React.Component {
                         noImg: true,
                     })
                 }
+            })
+            .catch((error) => {
+                console.log(error)
             })
     }
 
@@ -66,7 +67,8 @@ class App extends React.Component {
             totalPhotos: 0,
             currentPage: 1,
             perPage: 20,
-            popularImages: true
+            popularImages: true,
+            query: null
         })
     }
 
@@ -91,7 +93,23 @@ class App extends React.Component {
                 </HeroBox>
                 <div className='ui container'>
                     {this.state.popularImages ? <PopularItems /> : ''}
+                    {!this.state.popularImages ? <Pagination
+                        current={this.state.currentPage}
+                        total={this.state.totalPhotos}
+                        perPage={this.state.perPage}
+                        query={this.state.query}
+                        onPageChange={page => this.onSearchSubmit(this.state.query, page)}
+                        page={this.props.page}
+                    /> : ''}
                     {imageList}
+                    {!this.state.popularImages ? <Pagination
+                        current={this.state.currentPage}
+                        total={this.state.totalPhotos}
+                        perPage={this.state.perPage}
+                        query={this.state.query}
+                        onPageChange={page => this.onSearchSubmit(this.state.query, page)}
+                        page={this.props.page}
+                    /> : ''}
                 </div>
             </Aux>
         )

@@ -1,0 +1,29 @@
+.limitPagination {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    width: 230px;
+}
+
+ul {
+    padding: 0;
+    margin: 0 25px 20px;
+}
+li {
+    display: inline-block;
+    margin: 0;
+    padding: 0 10px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 10px;
+}
+
+.pagLeft,
+.pagRight {
+    cursor: pointer;
+}

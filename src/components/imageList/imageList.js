@@ -2,10 +2,10 @@ import React from "react";
 import classes from './imageList.module.css';
 import ImageCard from "../imageCard/imageCard";
 import ArtistAvatar from "../artistAvatar/artistAvatar";
+import Pagination from "../Pagination/Pagination";
 
 const imageList = (props) => {
      const images = props.images.map((image) => {
-         console.log(image);
          return (
              <div>
                  <ImageCard
@@ -22,13 +22,13 @@ const imageList = (props) => {
                      }}
                      image={image}
                      key={image.id} />
-                    <ArtistAvatar avatar={image.user.profile_image.large}
-                    name={image.user.name}
-                    link={image.user.portfolio_url}
-                    />
 
+                 <ArtistAvatar
+                     avatar={image.user.profile_image.large}
+                     name={image.user.name}
+                     link={image.user.portfolio_url}
+                 />
              </div>
-
          )
      })
 

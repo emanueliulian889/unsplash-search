@@ -5,6 +5,7 @@ import ImageList from "../imageList/imageList";
 
 class PopularItems extends Component {
     state = {
+        id: 1,
         popularImages: [],
     }
 
@@ -17,7 +18,6 @@ class PopularItems extends Component {
                 }
             })
             .then(response => {
-                console.log(response)
                 this.setState({
                     popularImages: response.data
                 })
@@ -28,7 +28,7 @@ class PopularItems extends Component {
         return (
             <Aux>
                 <h1 style={{textAlign: 'center'}}>Popular images</h1>
-                <ImageList images={this.state.popularImages}/>
+                <ImageList images={this.state.popularImages} />
             </Aux>
         )
     }

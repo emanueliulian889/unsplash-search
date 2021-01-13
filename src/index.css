@@ -34,3 +34,12 @@ button.fullscreen-exit-btn {
     width: initial;
     height: initial;
 }
+
+.hidden {
+    display: none;
+}
+
+.current {
+    color: red;
+    font-weight: bolder;
+}

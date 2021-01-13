@@ -1,9 +1,7 @@
 .imgList {
-    /*display: flex;*/
-    /*height: 100vh;*/
-    /*flex-wrap: wrap;*/
     display: inline-block;
     width: 100%;
+    margin-bottom: 25px;
 }
 
 .imgList div {
@@ -13,10 +11,8 @@
 
 .imgList > div {
     border: 1px solid rgba(34,36,38,.15);
-    /*padding: 5px;*/
     width: calc(33.33% - 10px);
     transition: 0.4s;
-    /*transform: translateY(0);*/
 }
 
 .imgList > div:hover {
@@ -26,7 +22,6 @@
 .imgList > div:nth-child(4),
 .imgList > div:nth-child(5) {
     border: 1px solid rgba(34,36,38,.15);
-    /*padding: 5px;*/
     width: calc(50% - 10px);
 }
 
